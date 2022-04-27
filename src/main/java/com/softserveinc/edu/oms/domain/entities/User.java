@@ -53,6 +53,11 @@ public class User extends AbstractEntity implements Serializable {
 	@JoinColumn(name = "region_ref")
 	private Region region;
 
+	@Column(name = "is_user_active")
+	public Boolean isActive() {
+		return active;
+	}
+
 	public User() {
 		active = true;
 	}

@@ -7,12 +7,12 @@
 <%@ page import="com.softserveinc.edu.oms.web.product.model.ListProductModel" %>
 Search for item by:
 <form:form method="POST" action="products.htm"
-	commandName="model">
+	modelAttribute="model">
 	<form:hidden path="orderId"/>
 	<form:hidden path="orderItemId"/>
 	<form:hidden path="sortPropertyName"/>
 	<form:hidden path="ascending"/>
-	<form:hidden path="productId"/>
+	<form:hidden path="id"/>
 	<form:hidden path="quantity"/>
 	<form:hidden path="dimension"/>
 	

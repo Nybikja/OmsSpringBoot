@@ -59,7 +59,7 @@ public abstract class AbstractFormUserController {
 		return user;
 	}
 
-//	@Autowired
+	@Autowired
 	public void setAddEditUserValidator(
 			final AddEditUserValidator addEditUserValidator) {
 		this.addEditUserValidator = addEditUserValidator;

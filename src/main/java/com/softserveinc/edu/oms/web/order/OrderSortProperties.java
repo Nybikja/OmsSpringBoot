@@ -1,9 +1,6 @@
-/**
- * 
- */
 package com.softserveinc.edu.oms.web.order;
 
-import com.softserveinc.edu.oms.repository.params.SortProperties;
+import com.softserveinc.edu.oms.persistence.dao.params.SortProperties;
 
 import java.util.HashMap;
 

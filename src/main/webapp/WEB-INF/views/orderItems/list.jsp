@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+		 pageEncoding="ISO-8859-1"%>
 <%@ page session="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
@@ -27,7 +27,7 @@
 	</script>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>OMS
+	<title>Order Item
 	</title>
 	<link rel="stylesheet" type="text/css"
 		  href="<c:url value="/css/style.css"/>"/>
@@ -42,19 +42,20 @@
 			<h2>Simple. Slim. Genius.</h2>
 		</div>
 
-		<ul id="nav">
-			<c:set var="adminLink">
-				Administration
-			</c:set>
-			<c:set var="itemsLink">
-				Item Management
-			</c:set>
-			<c:set var="ordersLink">
-				Ordering
-			</c:set>
-			<c:set var="infoLink">
-			User
-
+		<div id="menubar">
+			<ul id="nav">
+				<c:set var="adminLink">
+					Administration
+				</c:set>
+				<c:set var="itemsLink">
+					Item Management
+				</c:set>
+				<c:set var="ordersLink">
+					Ordering
+				</c:set>
+				<c:set var="infoLink">
+					User
+				</c:set>
 				<c:set var="current">
 					orders
 				</c:set>

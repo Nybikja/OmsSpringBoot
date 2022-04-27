@@ -95,4 +95,12 @@ public class Product extends AbstractEntity implements Comparable<Product> {
 			return description.compareTo(product.description);
 		}
 	}
+
+	public String getProductName() {
+		return name;
+	}
+	
+	public void setProductName(String productName) {
+		name = productName;
+	}
 }

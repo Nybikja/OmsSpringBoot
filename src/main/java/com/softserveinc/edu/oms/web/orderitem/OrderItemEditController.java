@@ -35,8 +35,7 @@ public class OrderItemEditController extends OrderItemControllerUtil {
 	}
 
 	@RequestMapping(value = "orderItemsOpen.htm")
-	public String orderItemsOpen(final HttpServletRequest request,
-			final Locale locale, final ModelMap modelMap) {
+	public String orderItemsOpen(final HttpServletRequest request) {
 
 		if (!isOrderIdValid(request)) {
 			return "redirect:orderItemsError.htm?"
@@ -103,7 +102,8 @@ public class OrderItemEditController extends OrderItemControllerUtil {
 					.getAssigne().getLogin());
 		}
 
-		if (orderData.getOrder().getOrderNumber() != 0) {
+//		if (orderData.getOrder().getOrderNumber() != 0) {
+		if (orderData.getOrder().getOrderNumber() != null && orderData.getOrder().getOrderNumber() != 0) {
 			modelMap.put(OrderItemParameters.ORDER_NUMBER, orderData.getOrder()
 					.getOrderNumber());
 		} else {
@@ -135,6 +135,7 @@ public class OrderItemEditController extends OrderItemControllerUtil {
 			final ModelMap modelMap) {
 
 		User user = SessionExplorer.getLoggedUser();
+
 		if (!user.getRole().getId()
 				.equals(roleService.getCustomerRole().getId())) {
 			return "redirect:orderItemsError.htm?"
@@ -153,8 +154,7 @@ public class OrderItemEditController extends OrderItemControllerUtil {
 	}
 
 	@RequestMapping(value = "orderItemsDelete.htm", method = RequestMethod.POST)
-	public String deleteOrderItem(final HttpServletRequest request,
-			final ModelMap modelMap) {
+	public String deleteOrderItem(final HttpServletRequest request) {
 
 		Integer orderId = Integer.parseInt(request
 				.getParameter(ParameterNames.ORDER_ID));
@@ -179,12 +179,9 @@ public class OrderItemEditController extends OrderItemControllerUtil {
 		if (order.getOrderStatus() == null) {
 			return true;
 		}
-		if (order.getOrderStatus().getId().equals(pendingStatus.getId())
-				|| order.getOrderStatus().getId()
-						.equals(deliveredStatus.getId())) {
-			return false;
-		}
-		return true;
+		return !order.getOrderStatus().getId().equals(pendingStatus.getId())
+				&& !order.getOrderStatus().getId()
+				.equals(deliveredStatus.getId());
 
 	}
 }

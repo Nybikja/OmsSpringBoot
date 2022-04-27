@@ -1,7 +1,7 @@
 package com.softserveinc.edu.oms.service.interfaces;
 
 import com.softserveinc.edu.oms.domain.AbstractEntity;
-import com.softserveinc.edu.oms.repository.params.SortProperties;
+import com.softserveinc.edu.oms.persistence.dao.params.SortProperties;
 
 import java.util.List;
 
@@ -26,6 +26,6 @@ public interface ServiceForPaging<T extends AbstractEntity> extends
 	 * @return of all rows of the appropriate table in the DB.
 	 */
 	List<T> findAll(final Integer startingFrom, final Integer maxResult,
-			final SortProperties sortProperties);
+                    final SortProperties sortProperties);
 
 }

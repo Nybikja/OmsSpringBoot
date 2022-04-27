@@ -1,27 +1,28 @@
 package com.softserveinc.edu.oms.service.implementation;
 
 import com.softserveinc.edu.oms.domain.entities.Region;
-import com.softserveinc.edu.oms.repository.params.SortProperties;
-import com.softserveinc.edu.oms.repository.RegionRepository;
+import com.softserveinc.edu.oms.persistence.dao.interfaces.IRegionDao;
+import com.softserveinc.edu.oms.persistence.dao.params.SortProperties;
 import com.softserveinc.edu.oms.service.interfaces.IRegionService;
-
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@AllArgsConstructor
 @Service
 public class RegionService implements IRegionService {
+	private IRegionDao regionDao;
 
-	private final RegionRepository regionDao;
+	@Autowired
+	public void setRegionDao(final IRegionDao regionDao) {
+		this.regionDao = regionDao;
+	}
 
 	@Transactional
 	@Override
 	public Long getRowCount() {
-		return 0L;
-//		return regionDao.getRowCount();
+		return regionDao.getRowCount();
 	}
 
 	@Transactional
@@ -33,20 +34,19 @@ public class RegionService implements IRegionService {
 	@Transactional
 	@Override
 	public List<Region> findAll(final SortProperties sortProperties) {
-		return null;
-//		return regionDao.findAll(sortProperties);
+		return regionDao.findAll(sortProperties);
 	}
 
 	@Transactional
 	@Override
 	public Region findByID(final Integer id) {
-		return regionDao.findOne(id);
+		return regionDao.findByID(id);
 	}
 
 	@Transactional
 	@Override
 	public Region insertOrUpdate(final Region entity) {
-		return regionDao.save(entity);
+		return regionDao.insertOrUpdate(entity);
 	}
 
 	@Transactional
@@ -58,6 +58,6 @@ public class RegionService implements IRegionService {
 	@Transactional
 	@Override
 	public List<Region> findRegionByName(final String regionName) {
-		return regionDao.findByName(regionName);
+		return regionDao.findRegionByName(regionName);
 	}
 }

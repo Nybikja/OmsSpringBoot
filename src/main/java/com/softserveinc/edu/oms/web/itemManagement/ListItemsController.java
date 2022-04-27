@@ -105,7 +105,7 @@ public class ListItemsController extends AbstractListItemsController {
 			productService.delete(product);
 		} catch (Exception exception) {
 			modelMap.put("error", "This product is used, you cannot delete it");
-			return "productDeleteError";
+			return "itemsManagement/productDeleteError";
 		}
 
 		return redirectAfterAction();

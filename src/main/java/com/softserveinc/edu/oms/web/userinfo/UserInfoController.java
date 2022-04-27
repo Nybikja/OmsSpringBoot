@@ -11,7 +11,7 @@ public class UserInfoController {
 
 	private static final String USER = "user";
 
-	@RequestMapping(value = "userInfo.htm")
+	@RequestMapping(value = {"/","/userInfo.htm"})
 	public String userInfo(final ModelMap map) {
 
 		User user = SessionExplorer.getLoggedUser();

@@ -1,6 +1,6 @@
 package com.softserveinc.edu.oms.web.itemManagement.util;
 
-import com.softserveinc.edu.oms.repository.params.SortProperties;
+import com.softserveinc.edu.oms.persistence.dao.params.SortProperties;
 
 public class ProductSortPropertiesFactory {
 	private ProductSortPropertiesFactory() {

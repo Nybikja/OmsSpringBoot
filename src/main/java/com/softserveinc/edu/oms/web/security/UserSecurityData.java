@@ -1,13 +1,14 @@
 package com.softserveinc.edu.oms.web.security;
 
-import com.softserveinc.edu.oms.domain.entities.User;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import com.softserveinc.edu.oms.domain.entities.User;
 
 /**
  * @author Orest

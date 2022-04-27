@@ -19,8 +19,9 @@ public class LoginController {
 	public String handleLogin(final ModelMap map) {
 		Object principal = SecurityContextHolder.getContext()
 				.getAuthentication().getPrincipal();
-
+		System.out.println(map);
 		if (principal instanceof UserSecurityData) {
+			System.out.println(principal);
 			return "redirect:userInfo.htm";
 		}
 //		return "redirect:hello";

@@ -6,23 +6,23 @@
 <%@page import = "com.softserveinc.edu.oms.web.product.model.ListProductModel"  %>
 <fieldset>
 
-	<form:form commandName="model" method="post" action="products.htm" id="doneForm">
+	<form:form modelAttribute="model" method="post" action="products.htm" id="doneForm">
 		<form:hidden path="orderId"/>
 		<form:hidden path="orderItemId"/>
 		<form:hidden path="searchProperty"/>
 		<form:hidden path="searchValue"/>
 		<form:hidden path="ascending"/>
 		<form:hidden path="sortPropertyName"/>
-		<form:hidden path="productId"/>
+		<form:hidden path="id"/>
 		<table>
 			<tr>
 				<td>Item</td>
-				<td><c:if test="${(!empty model.productId) &&(model.productId!='')&&(model.productId!=null)}">${selectedProduct.productName }</c:if>
+				<td><c:if test="${(!empty model.id) &&(model.id!='')&&(model.id!=null)}">${selectedProduct.name }</c:if>
 				</td>
 			</tr>
 			<tr>
 				<td>Price</td>
-				<td><c:if test="${(model.productId!=null)}">${selectedProduct.productPrice }</c:if>
+				<td><c:if test="${(model.id!=null)}">${selectedProduct.price }</c:if>
 				</td>
 			</tr>
 			<tr>
@@ -40,7 +40,7 @@
 	<table>
 	<tr>
 		<td>
-			<form:form commandName="model" id = "resetForm" method="post" action="products.htm" >
+			<form:form modelAttribute="model" id = "resetForm" method="post" action="products.htm" >
 				<%@include file="hidden.jsp" %>
 				<input type="hidden" name="reset"/>
 				<input type="submit" value="Reset">

@@ -1,28 +1,29 @@
 package com.softserveinc.edu.oms.service.implementation;
 
 import com.softserveinc.edu.oms.domain.entities.Product;
-import com.softserveinc.edu.oms.repository.params.SortProperties;
-import com.softserveinc.edu.oms.repository.ProductRepository;
+import com.softserveinc.edu.oms.persistence.dao.interfaces.IProductDao;
+import com.softserveinc.edu.oms.persistence.dao.params.SortProperties;
 import com.softserveinc.edu.oms.service.interfaces.IProductService;
 import com.softserveinc.edu.oms.web.itemManagement.util.ProductSelectField;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@AllArgsConstructor
 @Service
 public class ProductService implements IProductService {
+	private IProductDao productDao;
 
-	private final ProductRepository productDao;
+	@Autowired
+	public void setProductDao(final IProductDao productDao) {
+		this.productDao = productDao;
+	}
 
 	@Override
 	@Transactional
 	public Long getRowCount() {
-		return 0L;
-//		return productDao.getRowCount();
+		return productDao.getRowCount();
 	}
 
 	@Override
@@ -34,20 +35,19 @@ public class ProductService implements IProductService {
 	@Override
 	@Transactional
 	public List<Product> findAll(final SortProperties sortProperties) {
-		return null;
-//		return productDao.findAll(sortProperties);
+		return productDao.findAll(sortProperties);
 	}
 
 	@Override
 	@Transactional
 	public Product findByID(final Integer id) {
-		return productDao.findOne(id);
+		return productDao.findByID(id);
 	}
 
 	@Override
 	@Transactional
 	public Product insertOrUpdate(final Product entity) {
-		return productDao.save(entity);
+		return productDao.insertOrUpdate(entity);
 	}
 
 	@Override
@@ -55,36 +55,32 @@ public class ProductService implements IProductService {
 	public void delete(final Product entity) {
 		entity.setActive(false);
 
-		productDao.save(entity);
+		productDao.insertOrUpdate(entity);
 	}
 
 	@Override
 	@Transactional
-	public List<Product> findByName(final String productName) {
-		return productDao.findByName(productName);
+	public List<Product> findByName(final String name) {
+		return productDao.findByName(name);
 	}
 
 	@Override
 	@Transactional
-	public List<Product> findByName(final String productName,
+	public List<Product> findByName(final String name,
 			final SortProperties sortProperties) {
-//		return productDao.findByName(productName, sortProperties);
-		return null;
-
+		return productDao.findByName(name, sortProperties);
 	}
 
 	@Override
 	@Transactional
-	public boolean containsProductByName(final String productName) {
-		return false;
-//		return productDao.containsName(productName);
+	public boolean containsProductByName(final String name) {
+		return productDao.containsProductByName(name);
 	}
 
 	@Override
 	@Transactional
-	public int numberOfProductByName(final String productName) {
-		return 0;
-//		return productDao.numberOfProductByName(productName);
+	public int numberOfProductByName(final String name) {
+		return productDao.numberOfProductByName(name);
 	}
 
 	@Override
@@ -97,27 +93,20 @@ public class ProductService implements IProductService {
 	@Transactional
 	public List<Product> findByDescription(final String productDescription,
 			final SortProperties sortProperties) {
-//		return productDao.findByDescription(productDescription, sortProperties);
-		return null;
+		return productDao.findByDescription(productDescription, sortProperties);
 	}
 
 	@Override
 	@Transactional
 	public boolean containsProductByDescription(final String productDescription) {
-		return false;
-//		return productDao.containsProductByDescription(productDescription);
+		return productDao.containsProductByDescription(productDescription);
 	}
 
 	@Override
-	public int numberOfProductByDescription(String productDescription) {
-		return 0;
+	@Transactional
+	public int numberOfProductByDescription(final String productDescription) {
+		return productDao.numberOfProductByDescription(productDescription);
 	}
-
-//	@Override
-//	@Transactional
-//	public int numberOfProductByDescription(final String productDescription) {
-//		return productDao.numberOfProductByDescription(productDescription);
-//	}
 
 	@Override
 	@Transactional
@@ -129,33 +118,29 @@ public class ProductService implements IProductService {
 	@Transactional
 	public List<Product> findByPriceFromTo(final Double productPriceFrom,
 			final Double productPriceTo) {
-//		return productDao.findByPriceFromTo(productPriceFrom, productPriceTo);
-		return null;
-
+		return productDao.findByPriceFromTo(productPriceFrom, productPriceTo);
 	}
 
 	@Override
 	@Transactional
 	public List<Product> findByPriceFromTo(final Double productPriceFrom,
 			final Double productPriceTo, final SortProperties sortProperties) {
-//		return productDao.findByPriceFromTo(productPriceFrom, productPriceTo, sortProperties);
-		return null;
+		return productDao.findByPriceFromTo(productPriceFrom, productPriceTo,
+				sortProperties);
 	}
 
 	@Override
 	@Transactional
 	public List<Product> findAll(final Integer startingFrom,
 			final Integer maxResult) {
-//		return productDao.findAll(startingFrom, maxResult);
-		return null;
+		return productDao.findAll(startingFrom, maxResult);
 	}
 
 	@Override
 	@Transactional
 	public List<Product> findAll(final Integer startingFrom,
 			final Integer maxResult, final SortProperties sortProperties) {
-//		return productDao.findAll(startingFrom, maxResult, sortProperties);
-		return null;
+		return productDao.findAll(startingFrom, maxResult, sortProperties);
 	}
 
 	@Override
@@ -163,8 +148,8 @@ public class ProductService implements IProductService {
 	public List<Product> findByName(final String productName,
 			final Integer startingFrom, final Integer maxResult,
 			final SortProperties sortProperties) {
-//		return productDao.findByName(productName, startingFrom, maxResult, sortProperties);
-		return null;
+		return productDao.findByName(productName, startingFrom, maxResult,
+				sortProperties);
 	}
 
 	@Override
@@ -172,8 +157,8 @@ public class ProductService implements IProductService {
 	public List<Product> findByDescription(final String productDescription,
 			final Integer startingFrom, final Integer maxResult,
 			final SortProperties sortProperties) {
-//		return productDao.findByDescription(productDescription, startingFrom, maxResult, sortProperties);
-		return null;
+		return productDao.findByDescription(productDescription, startingFrom,
+				maxResult, sortProperties);
 	}
 
 	@Override
@@ -181,52 +166,47 @@ public class ProductService implements IProductService {
 	public List<Product> findBySearchValue(final String searchValue,
 			final ProductSelectField selectField, final Integer startingFrom,
 			final Integer maxResult, final SortProperties sortProperties) {
-//		switch (selectField) {
-//		case PRODUCT_NAME:
-//			return findByName(searchValue, startingFrom, maxResult,
-//					sortProperties);
-//
-//		case DESCRIPTION:
-//			return findByDescription(searchValue, startingFrom, maxResult,
-//					sortProperties);
-//
-//		default:
-//			return findByName(searchValue, startingFrom, maxResult,
-//					sortProperties);
-//		}
-		return null;
+		switch (selectField) {
+		case PRODUCT_NAME:
+			return findByName(searchValue, startingFrom, maxResult,
+					sortProperties);
+
+		case DESCRIPTION:
+			return findByDescription(searchValue, startingFrom, maxResult,
+					sortProperties);
+
+		default:
+			return findByName(searchValue, startingFrom, maxResult,
+					sortProperties);
+		}
 	}
 
 	@Override
 	@Transactional
 	public Integer countProductsBySearchValue(final String searchValue,
 			final ProductSelectField selectField) {
-//		switch (selectField) {
-//		case PRODUCT_NAME:
-//			return countProductsByName(searchValue).intValue();
-//
-//		case DESCRIPTION:
-//			return countProductsByDescription(searchValue).intValue();
-//
-//		default:
-//			return numberOfProductByDescription(searchValue);
-//		}
-		return null;
+		switch (selectField) {
+		case PRODUCT_NAME:
+			return countProductsByName(searchValue).intValue();
 
+		case DESCRIPTION:
+			return countProductsByDescription(searchValue).intValue();
+
+		default:
+			return numberOfProductByDescription(searchValue);
+		}
 	}
 
 	@Override
 	@Transactional
 	public Long countProductsByName(final String productName) {
-		return 0L;
-//		return productDao.countProductsByName(productName);
+		return productDao.countProductsByName(productName);
 	}
 
 	@Override
 	@Transactional
 	public Long countProductsByDescription(final String productDescription) {
-		return 0L;
-//		return productDao.countProductsByDescription(productDescription);
+		return productDao.countProductsByDescription(productDescription);
 	}
 
 }

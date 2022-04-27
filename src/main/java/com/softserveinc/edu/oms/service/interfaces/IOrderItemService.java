@@ -19,11 +19,11 @@ public interface IOrderItemService extends ServiceForPaging<OrderItem> {
 	 * @return list of order items
 	 */
 	List<OrderItem> getOrderItemsFromOrder(final Order order,
-			final Integer startingFrom, final Integer maxResult);
+                                           final Integer startingFrom, final Integer maxResult);
 
 	/**
 	 * returns list of order items which belong to specified order.
-	 * 
+	 *
 	 * @param order
 	 * @return list of order items
 	 */
@@ -31,7 +31,7 @@ public interface IOrderItemService extends ServiceForPaging<OrderItem> {
 
 	/**
 	 * returns number of order items in specified order
-	 * 
+	 *
 	 * @param order
 	 * @return long value representing number of order items
 	 */
@@ -40,7 +40,7 @@ public interface IOrderItemService extends ServiceForPaging<OrderItem> {
 	/**
 	 * returns part of list of order items which belong to specified order. List
 	 * contains items from startingFrom to startingFrom+maxResult
-	 * 
+	 *
 	 * @param orderId
 	 * @param startingFrom
 	 *            position of the first row which will be added to result
@@ -49,7 +49,7 @@ public interface IOrderItemService extends ServiceForPaging<OrderItem> {
 	 * @return list of order items
 	 */
 	List<OrderItem> getOrderItemsFromOrder(final Integer orderId,
-			final Integer startingFrom, final Integer maxResult);
+                                           final Integer startingFrom, final Integer maxResult);
 
 	/**
 	 * returns list of order items which belong to specified order.

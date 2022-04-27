@@ -1,22 +1,22 @@
 package com.softserveinc.edu.oms.service.interfaces;
 
 import com.softserveinc.edu.oms.domain.entities.Dimension;
-import com.softserveinc.edu.oms.repository.params.DimensionTypesEnum;
+import com.softserveinc.edu.oms.persistence.dao.params.DimensionTypesEnum;
 
 import java.util.List;
 
 public interface IDimensionService extends Service<Dimension> {
 	List<Dimension> findDimensionByName(
-			final String dimensionName);
+            final String dimensionName);
 
 	List<Dimension> findDimensionByName(
-			final DimensionTypesEnum dimensionType);
+            final DimensionTypesEnum dimensionType);
 
-	List<Dimension> findDimensionByNumberOfProduct(
-			final int numberOfProduct);
+	List<Dimension> findDimensionByNumberOfProducts(
+            final int numberOfProduct);
 
-	List<Dimension> findDimensionByNumberOfProduct(
-			final DimensionTypesEnum dimensionType);
+	List<Dimension> findDimensionByNumberOfProducts(
+            final DimensionTypesEnum dimensionType);
 
 	Dimension getItemDimension();
 

@@ -1,18 +1,21 @@
 package com.softserveinc.edu.oms.web.orderitem;
 
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+
+import com.softserveinc.edu.oms.domain.entities.Order;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.softserveinc.edu.oms.web.ParameterNames;
 import com.softserveinc.edu.oms.web.orderitem.model.OrderItemsPageModel;
 import com.softserveinc.edu.oms.web.orderitem.model.temporarydata.ITemporaryOrderData;
 import com.softserveinc.edu.oms.web.orderitem.model.temporarydata.TemporaryListOrderData;
 import com.softserveinc.edu.oms.web.orderitem.util.OrderItemParameters;
 import com.softserveinc.edu.oms.web.orderitem.util.SessionExplorer;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 
 @Controller
 public class OrderItemDBController extends OrderItemControllerUtil {
@@ -21,8 +24,8 @@ public class OrderItemDBController extends OrderItemControllerUtil {
 
 	@RequestMapping(value = "orderItemsSave.htm", method = RequestMethod.POST)
 	public final String orderItemsSave(final HttpServletRequest request,
-			final ModelMap modelMap) {
-
+									   final ModelMap modelMap) {
+		System.out.println(request.getSession().getAttribute(ParameterNames.ORDER_TEMPORARY_DATA));
 		Integer orderId = Integer.parseInt(request
 				.getParameter(ParameterNames.ORDER_ID));
 
@@ -38,7 +41,10 @@ public class OrderItemDBController extends OrderItemControllerUtil {
 
 		ITemporaryOrderData orderData = SessionExplorer.getTemporaryOrderData(
 				request, orderId);
-		if (!orderData.getOrder().getOrderNumber().equals(orderNumber)
+
+		System.out.println(orderData.getOrder());
+		System.out.println(orderData.getOrder().getOrderNumber());
+		if (orderData.getOrder() != null && !orderData.getOrder().getOrderNumber().equals(orderNumber)
 				&& orderService.orderNumberExists(orderNumber)) {
 			return "redirect:orderItemsError.htm?"
 					+ OrderItemParameters.ERROR_MESSAGE + "="
@@ -73,7 +79,7 @@ public class OrderItemDBController extends OrderItemControllerUtil {
 
 	@RequestMapping(value = "orderItemsCancel.htm", method = RequestMethod.POST)
 	public final String orderItemsCancel(final HttpServletRequest request,
-			final ModelMap modelMap) {
+										 final ModelMap modelMap) {
 
 		Integer orderId = Integer.parseInt(request
 				.getParameter(ParameterNames.ORDER_ID));
@@ -87,7 +93,7 @@ public class OrderItemDBController extends OrderItemControllerUtil {
 
 	@RequestMapping(value = "orderItemsOrder.htm", method = RequestMethod.POST)
 	public final String orderItemsOrder(final HttpServletRequest request,
-			final ModelMap modelMap) {
+										final ModelMap modelMap) {
 
 		Integer orderId = Integer.parseInt(request
 				.getParameter(ParameterNames.ORDER_ID));

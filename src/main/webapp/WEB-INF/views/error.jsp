@@ -68,8 +68,7 @@
 					</li>
 				</sec:authorize>
 
-				<sec:authorize
-						access="hasAnyRole('ROLE_Administrator','ROLE_Customer','ROLE_Merchandiser')">
+				<sec:authorize access="hasAnyRole('ROLE_Administrator','ROLE_Customer','ROLE_Merchandiser')">
 					<li <c:if test="${current == 'orders'}">class="cur"</c:if>><a
 							href="/order.htm">${ordersLink}</a>
 					</li>

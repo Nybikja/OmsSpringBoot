@@ -2,7 +2,7 @@ package com.softserveinc.edu.oms.web.product;
 
 import com.softserveinc.edu.oms.domain.entities.OrderItem;
 import com.softserveinc.edu.oms.domain.entities.Product;
-import com.softserveinc.edu.oms.repository.params.SortProperties;
+import com.softserveinc.edu.oms.persistence.dao.params.SortProperties;
 import com.softserveinc.edu.oms.service.interfaces.IDimensionService;
 import com.softserveinc.edu.oms.service.interfaces.IProductService;
 import com.softserveinc.edu.oms.web.ParameterNames;
@@ -55,7 +55,7 @@ public class ProductController {
 		}
 
 		if (request.getParameter(SELECT) != null) {
-			productModel.setProductId(Integer.parseInt(request
+			productModel.setId(Integer.parseInt(request
 					.getParameter(SELECT)));
 		}
 
@@ -68,9 +68,9 @@ public class ProductController {
 		}
 
 		List<Product> products = findProducts(productModel);
-		if (productModel.getProductId() != null) {
+		if (productModel.getId() != null) {
 			map.put("selectedProduct",
-					productService.findByID(productModel.getProductId()));
+					productService.findByID(productModel.getId()));
 		}
 
 		map.put("model", productModel);
@@ -90,7 +90,7 @@ public class ProductController {
 		ITemporaryOrderData orderData = SessionExplorer.getTemporaryListData(
 				request).getTemporaryOrderData(productModel.getOrderId());
 
-		if (productModel.getProductId() == null) {
+		if (productModel.getId() == null) {
 			return "redirect:orderItemsError.htm?"
 					+ OrderItemParameters.ERROR_MESSAGE + "=" + "Pick product";
 		}
@@ -110,7 +110,7 @@ public class ProductController {
 
 		OrderItem orderItem = new OrderItem();
 
-		Product product = productService.findByID(productModel.getProductId());
+		Product product = productService.findByID(productModel.getId());
 		orderItem.setItemPrice(product.getPrice());
 		orderItem.setProduct(product);
 
@@ -170,7 +170,7 @@ public class ProductController {
 			TemporaryOrderItem tempOrderItem = orderData.findById(productModel
 					.getOrderItemId());
 
-			productModel.setProductId(tempOrderItem.getOrderItem().getProduct()
+			productModel.setId(tempOrderItem.getOrderItem().getProduct()
 					.getId());
 
 			productModel.setQuantity(tempOrderItem.getOrderItem().getQuantity()

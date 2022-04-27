@@ -1,7 +1,7 @@
 package com.softserveinc.edu.oms.service.interfaces;
 
 import com.softserveinc.edu.oms.domain.AbstractEntity;
-import com.softserveinc.edu.oms.repository.params.SortProperties;
+import com.softserveinc.edu.oms.persistence.dao.params.SortProperties;
 
 import java.util.List;
 

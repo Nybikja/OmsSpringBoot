@@ -11,7 +11,7 @@
 <fieldset>
 	<legend>Search by</legend>
 	<form:form id="searchForm" method="GET" action="${searchUsers}"
-		commandName="searchModel" style="width: 100%;">
+		modelAttribute="searchModel" style="width: 100%;">
 		<form:label path="">Field Filter:</form:label>
 
 		<form:select id="field" path="selectField" items="${userSelectFields}" />

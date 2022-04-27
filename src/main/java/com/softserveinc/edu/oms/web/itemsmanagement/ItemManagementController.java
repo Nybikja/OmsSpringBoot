@@ -69,7 +69,7 @@ public class ItemManagementController {
 				ItemManagementUtils.paging(1, 50, productService.findAll()));
 		System.out.println(productService.findAll().size());
 
-		return "productsList";
+		return "product/listProducts";
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class ItemManagementController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "addprotuct.htm", method = RequestMethod.GET, params = "new")
+	@RequestMapping(value = "addproduct.htm", method = RequestMethod.GET, params = "new")
 	public String addNewProduct(final Model model) {
 		model.addAttribute(new Product());
 		return "productAddEdit";

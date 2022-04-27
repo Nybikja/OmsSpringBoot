@@ -80,7 +80,7 @@
 				<li <c:if test="${current=='info'}">class="cur"</c:if>><a
 						href="/userInfo.htm">${infoLink}</a></li>
 
-				<li class="spec"><a href="/OMS/logout.htm" class="spec"><img
+				<li class="spec"><a href="/logout.htm" class="spec"><img
 						alt="logout" src="resources/logout.png"> </a></li>
 			</ul>
 		</div>

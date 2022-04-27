@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-Your locale is ${locale.toString() }
+
 	<fieldset>
 		<legend>Item Selection</legend>
 
@@ -57,11 +57,11 @@ Your locale is ${locale.toString() }
 			</thead>
 
 			<c:forEach items="${orderItems}" var="orderItem">
-				<tr >
+				<tr>
 					<td>${orderItem.orderItem.product.id}</td>
-					<td>${orderItem.orderItem.product.productName}</td>
-					<td>${orderItem.orderItem.product.productDescription}</td>
-					<td>${orderItem.orderItem.dimension.dimensionName}</td>
+					<td>${orderItem.orderItem.product.name}</td>
+					<td>${orderItem.orderItem.product.description}</td>
+					<td>${orderItem.orderItem.dimension.name}</td>
 					<td>${orderItem.orderItem.itemPrice}</td>
 					<td>${orderItem.orderItem.quantity}</td>
 					<td>${orderItem.orderItem.cost}</td>
@@ -98,7 +98,7 @@ Your locale is ${locale.toString() }
 				<input type="hidden" name="orderId" value="${orderId}" style = "display: inline;"/>
 				<input type="hidden" name="page" value="${page.getCurrentPage()}" style = "display: inline;"/>
 				
-				<input type="submit" value="<spring:message code="${actionName }"/>" name = ${actionName }  style = "display: inline;"
+				<input type="submit" value="submit" name = "${actionName }"  style = "display: inline;"
 					<c:if test="${page.isDisabled(actionName)}"> disabled="disabled" </c:if>/>
 			</form>
 			

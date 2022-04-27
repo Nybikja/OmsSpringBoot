@@ -1,7 +1,7 @@
 package com.softserveinc.edu.oms.web.user.util;
 
-import com.softserveinc.edu.oms.repository.params.SortProperties;
-import com.softserveinc.edu.oms.repository.params.user.UserSortPropertiesFactory;
+import com.softserveinc.edu.oms.persistence.dao.params.SortProperties;
+import com.softserveinc.edu.oms.persistence.dao.params.user.UserSortPropertiesFactory;
 import com.softserveinc.edu.oms.web.util.SearchModel;
 
 public class UserSortResolver {

@@ -24,16 +24,16 @@ public class AddUserController extends AbstractFormUserController {
 
 		modelMap.addAttribute("userModel", userModel);
 
-		return "userForm";
+		return "user/userForm";
 	}
 
 	@Override
 	@RequestMapping(value = "addUser.htm", method = RequestMethod.POST)
 	public String onSubmit(final UserModel userModel, final BindingResult result) {
-		addEditUserValidator.validate(userModel, result);
+//		addEditUserValidator.validate(userModel, result);
 
 		if (result.hasErrors()) {
-			return "userForm";
+			return "user/userForm";
 		}
 
 		User user = createUser(userModel);

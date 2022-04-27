@@ -1,8 +1,8 @@
 package com.softserveinc.edu.oms.service.interfaces;
 
 import com.softserveinc.edu.oms.domain.entities.Role;
-import com.softserveinc.edu.oms.repository.params.SortProperties;
-import com.softserveinc.edu.oms.repository.params.user.UserSelectWayCondition;
+import com.softserveinc.edu.oms.persistence.dao.params.SortProperties;
+import com.softserveinc.edu.oms.persistence.dao.params.user.UserSelectWayCondition;
 
 import java.util.List;
 
@@ -49,10 +49,10 @@ public interface IRoleService extends Service<Role> {
 	 * @return list of roles with roleName equals to "roleName"
 	 */
 	List<Role> findByRoleName(final String roleName,
-			SortProperties sortProperties);
+                              SortProperties sortProperties);
 
 	/**
-	 * 
+	 *
 	 * @param roleName
 	 *            - role name to find or part of it
 	 * @param condition
@@ -60,10 +60,10 @@ public interface IRoleService extends Service<Role> {
 	 * @return list of roles
 	 */
 	List<Role> findByRoleName(final String roleName,
-			final UserSelectWayCondition condition);
+                              final UserSelectWayCondition condition);
 
 	/**
-	 * 
+	 *
 	 * @param roleName
 	 *            - role name to find or part of it
 	 * @param condition
@@ -73,8 +73,8 @@ public interface IRoleService extends Service<Role> {
 	 * @return list of roles
 	 */
 	List<Role> findByRoleName(final String roleName,
-			final UserSelectWayCondition condition,
-			SortProperties sortProperties);
+                              final UserSelectWayCondition condition,
+                              SortProperties sortProperties);
 
 	/**
 	 * 

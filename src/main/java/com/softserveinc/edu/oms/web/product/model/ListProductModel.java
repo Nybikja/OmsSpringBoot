@@ -1,13 +1,13 @@
 package com.softserveinc.edu.oms.web.product.model;
 
-import com.softserveinc.edu.oms.repository.params.DimensionTypesEnum;
+import com.softserveinc.edu.oms.persistence.dao.params.DimensionTypesEnum;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListProductModel {
-	public static final String ITEM_NAME_VALUE = "productName";
-	public static final String ITEM_DESCRIPTION_VALUE = "productDescription";
+	public static final String ITEM_NAME_VALUE = "name";
+	public static final String ITEM_DESCRIPTION_VALUE = "description";
 	public static final String ITEM_NAME = "Item Name";
 	public static final String ITEM_DESCRIPTION = "Item Description";
 
@@ -45,7 +45,7 @@ public class ListProductModel {
 	private Integer orderId;
 	private Integer orderItemId;
 
-	private Integer productId;
+	private Integer id;
 
 	private String quantity;
 	private String dimension;
@@ -114,12 +114,12 @@ public class ListProductModel {
 		this.orderItemId = orderItemId;
 	}
 
-	public final Integer getProductId() {
-		return productId;
+	public final Integer getId() {
+		return id;
 	}
 
-	public final void setProductId(final Integer productId) {
-		this.productId = productId;
+	public final void setId(final Integer productId) {
+		this.id = productId;
 	}
 
 	public final Boolean isQuantityValid() {
@@ -131,7 +131,7 @@ public class ListProductModel {
 		return "ListProductModel [sortPropertyName=" + sortPropertyName
 				+ ", ascending=" + ascending + ", searchValue=" + searchValue
 				+ ", searchProperty=" + searchProperty + ", orderId=" + orderId
-				+ ", orderItemId=" + orderItemId + ", productId=" + productId
+				+ ", orderItemId=" + orderItemId + ", productId=" + id
 				+ ", quantity=" + quantity + ", dimension=" + dimension + "]";
 	}
 
@@ -178,7 +178,7 @@ public class ListProductModel {
 	 * 
 	 */
 	public final void reset() {
-		productId = null;
+		id = null;
 		quantity = DEFAULT_QUANTITY;
 		dimension = DEFAULT_DIMENSION;
 	}

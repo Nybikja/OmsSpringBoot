@@ -45,7 +45,7 @@ public class EditUserController extends AbstractFormUserController {
 	public String onSubmit(
 			@ModelAttribute("userModel") final UserModel userModel,
 			final BindingResult result) {
-		addEditUserValidator.validate(userModel, result);
+//		addEditUserValidator.validate(userModel, result);
 
 		if (result.hasErrors()) {
 			return "user/userForm";

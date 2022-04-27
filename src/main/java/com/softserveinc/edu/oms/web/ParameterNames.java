@@ -4,7 +4,7 @@ package com.softserveinc.edu.oms.web;
 public final class ParameterNames {
 
 	public static final String ORDER_ID = "orderId";
-	public static final String ORDER_ITEM_ID = "orderItemId";
+	public static final String ORDER_ITEM_ID = "id";
 	public static final String ADD_ORDER_ITEM = "add";
 	public static final String EDIT_ORDER_ITEM = "edit";
 

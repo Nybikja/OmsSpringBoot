@@ -1,6 +1,6 @@
 package com.softserveinc.edu.oms.web.product.model;
 
-import com.softserveinc.edu.oms.repository.params.SortProperties;
+import com.softserveinc.edu.oms.persistence.dao.params.SortProperties;
 
 public class ProductSortModel {
 

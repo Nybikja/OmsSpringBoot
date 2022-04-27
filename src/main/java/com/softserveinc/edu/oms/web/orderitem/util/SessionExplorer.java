@@ -15,6 +15,7 @@ public final class SessionExplorer {
 
 	public static TemporaryListOrderData getTemporaryListData(
 			final HttpServletRequest request) {
+		System.out.println(request.getSession());
 		TemporaryListOrderData listOrderData = (TemporaryListOrderData) request
 				.getSession().getAttribute(ParameterNames.ORDER_TEMPORARY_DATA);
 		if (listOrderData == null) {

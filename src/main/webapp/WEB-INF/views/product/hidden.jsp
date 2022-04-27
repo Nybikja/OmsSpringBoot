@@ -8,7 +8,7 @@
 	<form:hidden path="searchValue"/>
 	<form:hidden path="ascending"/>
 	<form:hidden path="sortPropertyName"/>
-	<form:hidden path="productId"/>
+	<form:hidden path="id"/>
 	<form:hidden path="quantity"/>
 	<form:hidden path="dimension"/>
 	

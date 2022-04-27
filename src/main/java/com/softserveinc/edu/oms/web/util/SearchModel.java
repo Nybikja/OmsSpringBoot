@@ -1,6 +1,6 @@
 package com.softserveinc.edu.oms.web.util;
 
-import com.softserveinc.edu.oms.repository.params.SortProperties;
+import com.softserveinc.edu.oms.persistence.dao.params.SortProperties;
 
 public class SearchModel {
 	public final static Integer DEFAULT_PAGE_SIZE = 5;

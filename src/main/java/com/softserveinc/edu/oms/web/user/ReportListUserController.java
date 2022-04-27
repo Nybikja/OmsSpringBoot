@@ -1,8 +1,8 @@
 package com.softserveinc.edu.oms.web.user;
 
 import com.softserveinc.edu.oms.domain.entities.User;
-import com.softserveinc.edu.oms.repository.params.user.UserSelectField;
-import com.softserveinc.edu.oms.repository.params.user.UserSelectWayCondition;
+import com.softserveinc.edu.oms.persistence.dao.params.user.UserSelectField;
+import com.softserveinc.edu.oms.persistence.dao.params.user.UserSelectWayCondition;
 import com.softserveinc.edu.oms.web.util.SearchModel;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.stereotype.Controller;

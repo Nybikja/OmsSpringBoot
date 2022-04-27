@@ -10,14 +10,14 @@
 	<thead>
 		<tr>
 			<th>
-				<form:form id="sortName" commandName="model" method="post" action="products.htm">
+				<form:form id="sortName" modelAttribute="model" method="post" action="products.htm">
 					<%@include file="hidden.jsp"%>
 					<input type="hidden" value="<%=ListProductModel.ITEM_NAME%>" name="sort">
 					<a href="javascript:$('#sortName').submit()">Item Name</a>
 				</form:form>
 			</th>
 			<th>
-				<form:form id="sortDescription" commandName="model" method="post" action="products.htm">
+				<form:form id="sortDescription" modelAttribute="model" method="post" action="products.htm">
 					<%@include file="hidden.jsp"%>
 					<input type="hidden" value="<%=ListProductModel.ITEM_DESCRIPTION%>" name="sort">
 					<a href="javascript:$('#sortDescription').submit()">Item Description</a>
@@ -28,10 +28,10 @@
 	</thead>
 	<c:forEach items="${products}"  var="product">
 		<tr>
-			<td>${product.productName}</td>
-			<td>${product.productDescription}</td>
+			<td>${product.name}</td>
+			<td>${product.description}</td>
 			<td>
-				<form:form id="selectFrom${product.id }" commandName="model" method="post" action="products.htm">
+				<form:form id="selectFrom${product.id }" modelAttribute="model" method="post" action="products.htm">
 					<%@include file="hidden.jsp"%>
 					<input type="hidden" value="${product.id }" name="select">
 					<a href="javascript:$('#selectFrom${product.id } ').submit()">Select</a>

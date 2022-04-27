@@ -1,13 +1,12 @@
 package com.softserveinc.edu.oms.service.implementation;
 
 import com.softserveinc.edu.oms.domain.entities.Order;
-import com.softserveinc.edu.oms.repository.OrderRepository;
-import com.softserveinc.edu.oms.repository.OrderStatusRepository;
-import com.softserveinc.edu.oms.repository.RoleRepository;
-import com.softserveinc.edu.oms.repository.params.SortProperties;
+import com.softserveinc.edu.oms.persistence.dao.concrete.OrderDao;
+import com.softserveinc.edu.oms.persistence.dao.concrete.OrderStatusDao;
+import com.softserveinc.edu.oms.persistence.dao.concrete.RoleDao;
+import com.softserveinc.edu.oms.persistence.dao.params.SortProperties;
 import com.softserveinc.edu.oms.service.interfaces.IOrderService;
 import com.softserveinc.edu.oms.web.order.SearchFilterOptions;
-import lombok.AllArgsConstructor;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,45 +15,66 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@AllArgsConstructor
 @Service
 public class OrderService implements IOrderService {
 
-	private final OrderRepository dao;
+	@Autowired
+	private OrderDao dao;
 
-	private final OrderStatusRepository orderStatusDAO;
+	@Autowired
+	private OrderStatusDao orderStatusDAO;
 
-	private final RoleRepository roleDAO;
+	@Autowired
+	private RoleDao roleDAO;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.softserveinc.edu.oms.service.interfaces.ServiceForPaging#findAll(
+	 * java.lang.Integer, java.lang.Integer)
+	 */
 	@Transactional
 	@Deprecated
 	@Override
 	public List<Order> findAll(final Integer startingFrom,
 			final Integer maxResult) {
 		// TODO Auto-generated method stub
-//		return dao.findAll(startingFrom, maxResult);
-		return null;
-
+		return dao.findAll(startingFrom, maxResult);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.softserveinc.edu.oms.service.interfaces.ServiceForPaging#findAll(
+	 * java.lang.Integer, java.lang.Integer,
+	 * com.softserveinc.edu.oms.persistence.dao.params.SortProperties)
+	 */
 	@Transactional
 	@Deprecated
 	@Override
 	public List<Order> findAll(final Integer startingFrom,
 			final Integer maxResult, final SortProperties sortProperties) {
-//		return dao.findAll(startingFrom, maxResult, sortProperties);
-		return null;
-
+		return dao.findAll(startingFrom, maxResult, sortProperties);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.softserveinc.edu.oms.service.interfaces.Service#getRowCount()
+	 */
 	@Transactional
 	@Override
 	public Long getRowCount() {
-		return null;
-
-//		return dao.getRowCount();
+		return dao.getRowCount();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.softserveinc.edu.oms.service.interfaces.Service#findAll()
+	 */
 	@Transactional
 	@Deprecated
 	@Override
@@ -62,26 +82,53 @@ public class OrderService implements IOrderService {
 		return dao.findAll();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.softserveinc.edu.oms.service.interfaces.Service#findAll(com.softserveinc
+	 * .edu.oms.persistence.dao.params.SortProperties)
+	 */
 	@Transactional
 	@Deprecated
 	@Override
 	public List<Order> findAll(final SortProperties sortProperties) {
-		return null;
-
-//		return dao.findAll(sortProperties);
+		return dao.findAll(sortProperties);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.softserveinc.edu.oms.service.interfaces.Service#findByID(java.lang
+	 * .Integer)
+	 */
 	@Transactional
 	@Override
 	public Order findByID(final Integer id) {
-		return dao.findOne(id);
+		return dao.findByID(id);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.softserveinc.edu.oms.service.interfaces.Service#insertOrUpdate(com
+	 * .softserveinc.edu.oms.domain.AbstractEntity)
+	 */
 	@Transactional
 	@Override
 	public Order insertOrUpdate(final Order entity) {
-		return dao.save(entity);
+		return dao.insertOrUpdate(entity);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.softserveinc.edu.oms.service.interfaces.Service#delete(com.softserveinc
+	 * .edu.oms.domain.AbstractEntity)
+	 */
 
 	@Transactional
 	@Override
@@ -96,12 +143,12 @@ public class OrderService implements IOrderService {
 
 		if (options.getFilterBy().equalsIgnoreCase("orderStatus")) {
 			filter = Restrictions.eq(options.getFilterBy(),
-					orderStatusDAO.findByOrderStatusName(options.getFilterValue()));
+					orderStatusDAO.getByName(options.getFilterValue()));
 		}
 		if (options.getFilterBy().equalsIgnoreCase("Role")) {
 			// filter = Restrictions.eq(options.getFilterBy(),
 			filter = Restrictions.eq("asss.role",
-					roleDAO.findByName(options.getFilterValue()));
+					roleDAO.findByRole(options.getFilterValue()));
 		}
 
 		if (options.getFilterValue().equals("")
@@ -136,53 +183,122 @@ public class OrderService implements IOrderService {
 		return search;
 	}
 
+	@Transactional
 	@Override
-	public List<Order> find(Integer startingFrom, Integer maxResult, SearchFilterOptions options, SortProperties sortProperties) {
-		return null;
+	public List<Order> find(final Integer startingFrom,
+			final Integer maxResult, final SearchFilterOptions options,
+			final SortProperties sortProperties) {
+		return dao.find(startingFrom, maxResult, sortProperties, options);
+		// Criterion search = this.createSearch(options);
+		// Criterion filter = this.createFilter(options);
+		//
+		// if (search == null) {
+		// if (filter == null) {
+		// return dao.findByCriterions(startingFrom, maxResult,
+		// sortProperties);
+		// } else {
+		// return dao.findByCriterions(startingFrom, maxResult,
+		// sortProperties, filter);
+		// }
+		// } else {
+		// if (options.getSearch().equalsIgnoreCase("orderName")) {
+		// if (filter == null) {
+		// return dao.findByCriterions(startingFrom, maxResult,
+		// sortProperties, search);
+		// } else {
+		// return dao.findByCriterions(startingFrom, maxResult,
+		// sortProperties, search, filter);
+		// }
+		// } else {
+		// if (options.getSearch().equalsIgnoreCase("orderStatus")) {
+		// return dao.findForOrderStatusLike(startingFrom, maxResult,
+		// sortProperties, options.getSearchValue() + "%",
+		// filter);
+		// } else {
+		// if (options.getSearch().equalsIgnoreCase("assignee")) {
+		// return dao.findForAssigneeLike(startingFrom, maxResult,
+		// sortProperties, options.getSearchValue() + "%",
+		// filter);
+		// }
+		// return dao.findAll(startingFrom, maxResult, sortProperties);
+		// }
+		// }
+		//
+		// }
+
 	}
 
+	@Transactional
 	@Override
-	public Long getRowCount(SearchFilterOptions options) {
-		return null;
+	public Long getRowCount(final SearchFilterOptions options) {
+		return dao.countRowNumbers(options);
+		// Criterion search = this.createSearch(options);
+		// Criterion filter = this.createFilter(options);
+		//
+		// if (search == null) {
+		// if (filter == null) {
+		// return dao.getRowCount();
+		// } else {
+		// return dao.getRowCountByCriterions(filter);
+		// }
+		// } else {
+		// if (filter == null) {
+		// return dao.getRowCountByCriterions(search);
+		// } else {
+		// return dao.getRowCountByCriterions(filter, search);
+		// }
+		// }
+		// Criterion search = this.createSearch(options);
+		// Criterion filter = this.createFilter(options);
+		//
+		// if (search == null) {
+		// if (filter == null) {
+		// return dao.getRowCount();
+		// } else {
+		// return dao.getRowCountByCriterions(filter);
+		// }
+		// } else {
+		// if (options.getSearch().equalsIgnoreCase("orderName")) {
+		// if (filter == null) {
+		// return dao.getRowCountByCriterions(search);
+		// } else {
+		// return dao.getRowCountByCriterions(filter, search);
+		// }
+		// } else {
+		// if (options.getSearch().equalsIgnoreCase("orderStatus")) {
+		// return dao.countRowNumbersForOrderStatusLike(
+		// options.getSearchValue() + "%", filter);
+		// } else {
+		// if (options.getSearch().equalsIgnoreCase("assignee")) {
+		// return dao.countRowNumbersForOrderStatusLike(
+		// options.getSearchValue() + "%", filter);
+		// }
+		// return dao.getRowCount();
+		// }
+		// }
+		//
+		// }
 	}
 
+	/**
+	 * @see IOrderService#getMaxOrderNumber()
+	 */
+	@Transactional
 	@Override
 	public Integer getMaxOrderNumber() {
-		return null;
+		return dao.findOrderNumber();
 	}
 
+	/**
+	 * @see IOrderService#orderNumberExists(Integer)
+	 */
+	@Transactional
 	@Override
-	public Boolean orderNumberExists(Integer orderNumber) {
-		return null;
+	public Boolean orderNumberExists(final Integer orderNumber) {
+
+		if (dao.findByOrderNumber(orderNumber) == null) {
+			return false;
+		}
+		return true;
 	}
-
-//	@Transactional
-//	@Override
-//	public List<Order> find(final Integer startingFrom,
-//			final Integer maxResult, final SearchFilterOptions options,
-//			final SortProperties sortProperties) {
-//		return dao.find(startingFrom, maxResult, sortProperties, options);
-//	}
-
-//	@Transactional
-//	@Override
-//	public Long getRowCount(final SearchFilterOptions options) {
-//		return dao.countRowNumbers(options);
-//	}
-
-//	@Transactional
-//	@Override
-//	public Integer getMaxOrderNumber() {
-//		return dao.findOrderNumber();
-//	}
-
-//	@Transactional
-//	@Override
-//	public Boolean orderNumberExists(final Integer orderNumber) {
-//
-//		if (dao.findByOrderNumber(orderNumber) == null) {
-//			return false;
-//		}
-//		return true;
-//	}
 }

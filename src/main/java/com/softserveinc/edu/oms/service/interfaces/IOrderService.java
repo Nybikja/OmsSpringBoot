@@ -2,7 +2,7 @@
 package com.softserveinc.edu.oms.service.interfaces;
 
 import com.softserveinc.edu.oms.domain.entities.Order;
-import com.softserveinc.edu.oms.repository.params.SortProperties;
+import com.softserveinc.edu.oms.persistence.dao.params.SortProperties;
 import com.softserveinc.edu.oms.web.order.SearchFilterOptions;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface IOrderService extends ServiceForPaging<Order> {
 	List<Order> find(Integer startingFrom, Integer maxResult,
-			SearchFilterOptions options, SortProperties sortProperties);
+                     SearchFilterOptions options, SortProperties sortProperties);
 
 	Long getRowCount(SearchFilterOptions options);
 
