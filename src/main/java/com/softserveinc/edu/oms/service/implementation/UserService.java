@@ -136,7 +136,7 @@ public class UserService implements IUserService, UserDetailsService {
 	}
 
 	/**
-	 * @see com.softserveinc.edu.oms.service.interfaces.IUserService#findMerchandiserUsers()
+	 * @see IUserService#findMerchandiserUsers()
 	 *
 	 * @author Ivanka
 	 */

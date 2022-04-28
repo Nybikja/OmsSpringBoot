@@ -42,8 +42,7 @@ public class OrderItemDBController extends OrderItemControllerUtil {
 		ITemporaryOrderData orderData = SessionExplorer.getTemporaryOrderData(
 				request, orderId);
 
-		System.out.println(orderData.getOrder());
-		System.out.println(orderData.getOrder().getOrderNumber());
+
 		if (orderData.getOrder() != null && !orderData.getOrder().getOrderNumber().equals(orderNumber)
 				&& orderService.orderNumberExists(orderNumber)) {
 			return "redirect:orderItemsError.htm?"

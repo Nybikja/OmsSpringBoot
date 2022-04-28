@@ -22,7 +22,7 @@ public class Order extends AbstractEntity {
 	private Integer id;
 
 	@Column(name = "order_number", unique = true)
-	private Integer orderNumber;
+	private int orderNumber;
 
 	@Column(name = "order_name", length = 100)
 	private String orderName;
@@ -90,5 +90,9 @@ public class Order extends AbstractEntity {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
 				"HH:mm dd-MM-yyyy");
 		return simpleDateFormat.format(orderDate);
+	}
+
+	public Integer getOrderNumber() {
+		return orderNumber;
 	}
 }
